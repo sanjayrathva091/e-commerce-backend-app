@@ -1,0 +1,1 @@
+exports.resetPassword = (req, res) => { };

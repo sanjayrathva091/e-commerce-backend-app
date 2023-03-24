@@ -1,0 +1,3 @@
+
+
+exports.forgotPassword = (req, res) => { };
