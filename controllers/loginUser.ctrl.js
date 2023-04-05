@@ -40,7 +40,7 @@ exports.loginUser = async (req, res) => {
         oldUser.blockedUntil = null;
         await oldUser.save();
 
-        const accessToken = jwt.sign({ _id: oldUser._id }, PrivateKey);
+        const accessToken = jwt.sign({ _id: oldUser._id, role: oldUser.role }, PrivateKey);
         return res.status(201).send({ message: 'Login successful', accessToken });
     } catch (error) {
         if (error.code === 's') {

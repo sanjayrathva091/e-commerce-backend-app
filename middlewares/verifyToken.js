@@ -7,10 +7,10 @@ const verifyToken = async (req, res, next) => {
     try {
         const bearerToken = req.headers.authorization;
         const accessToken = bearerToken.split(' ')[1];
-        const decoded = jwt.verify(accessToken, PrivateKey);
+        const { _id, role } = jwt.verify(accessToken, PrivateKey);
         req.user = {
-            id: decoded._id,
-            role: decoded.role
+            id: _id,
+            role
         }
         return next();
     } catch (error) {
