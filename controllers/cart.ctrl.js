@@ -51,20 +51,20 @@ const addToCart = async (req, res) => {
         if (!cart) {
             const newCart = new CartModel({
                 user: req.user.id,
-                items: [{ product: productId, quantity }],
+                products: [{ product: productId, quantity }],
             });
             await newCart.save();
             return res.status(201).json(newCart);
         }
 
-        const existingCartItem = cart.items.find(
+        const existingCartItem = cart.products.find(
             (item) => item.product.toString() === productId
         );
 
         if (existingCartItem) {
             existingCartItem.quantity += quantity;
         } else {
-            cart.items.push({ product: productId, quantity });
+            cart.products.push({ product: productId, quantity });
         }
 
         await cart.save();
