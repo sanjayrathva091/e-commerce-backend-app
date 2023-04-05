@@ -14,6 +14,7 @@ const { getProducts } = require('../controllers/admin.ctrl');
 const checkout = require('../controllers/checkout.ctrl');
 const { getCart, addToCart, updateCart, removeFromCart } = require('../controllers/cart.ctrl');
 const verifyToken = require('../middlewares/verifyToken');
+const { getOrders } = require('../controllers/orders.ctrl');
 const userRoutes = express.Router();
 
 /**
@@ -135,5 +136,16 @@ userRoutes.delete('/user/remove/cart/:productId', [verifyToken], removeFromCart)
  * @param {object} res - HTTP response object
  */
 userRoutes.post('/checkout', checkout);
+
+/**
+ * Route to get orders of a user
+ * @route GET /user/orders
+ * @param {string} token.headers.required - JWT token for authentication
+ * @returns {Array<Object>} Array of user orders
+ * @throws {401} If the token is invalid
+ * @throws {404} If the user orders are not found
+ * @throws {500} If there is a server error
+*/
+userRoutes.get('/user/orders', [verifyToken], getOrders);
 
 module.exports = userRoutes;
