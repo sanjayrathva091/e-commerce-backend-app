@@ -12,6 +12,7 @@ const { updateProfile } = require('../controllers/updateProfile.ctrl');
 const { userProfile } = require('../controllers/userProfile.ctrl');
 const { getProducts } = require('../controllers/admin.ctrl');
 const checkout = require('../controllers/checkout.ctrl');
+const { getCart, addToCart, updateCart, removeFromCart } = require('../controllers/cart.ctrl');
 const userRoutes = express.Router();
 
 /**
@@ -90,6 +91,14 @@ userRoutes.put('/user/profile', updateProfile);
  * @param {object} res - HTTP response object
  */
 userRoutes.get('/user/products', getProducts);
+
+userRoutes.get('/user/get/cart', getCart);
+
+userRoutes.post('/user/add/cart', addToCart);
+
+userRoutes.patch('/user/update/cart', updateCart);
+
+userRoutes.patch('/user/remove/cart', removeFromCart);
 
 /**
  * Checkout route
