@@ -24,7 +24,7 @@ const getCart = async (req, res) => {
         });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error.' });
+        res.status(500).json({ message: 'Server error.', error: error.message });
     }
 };
 
@@ -70,7 +70,7 @@ const addToCart = async (req, res) => {
         res.status(200).json(cart);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error.' });
+        res.status(500).json({ message: 'Server error.', error: error.message });
     }
 };
 
@@ -106,7 +106,7 @@ const updateCart = async (req, res) => {
         res.status(200).json(cart);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Server error.' });
+        res.status(500).json({ message: 'Server error.', error: error.message });
     }
 };
 
@@ -136,7 +136,7 @@ const removeFromCart = async (req, res) => {
         res.status(200).json(cart);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Server error.' });
+        res.status(500).json({ message: 'Server error.', error: error.message });
     }
 };
 
