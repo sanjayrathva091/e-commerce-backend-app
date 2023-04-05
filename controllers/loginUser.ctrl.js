@@ -1,7 +1,10 @@
 // import module
+require('dotenv').config();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const UserModel = require("../models/user.model");
 
+const PrivateKey = process.env.PRIVATE_KEY;
 /**
  * Login user
  * @param {object} req - Express request object
