@@ -47,8 +47,9 @@ const addToCart = async (req, res) => {
         }
 
         const cart = await CartModel.findOne({ user: req.user.id });
-        if (cart === null) {
-            const newCart = new Cart({
+
+        if (!cart) {
+            const newCart = new CartModel({
                 user: req.user.id,
                 items: [{ product: productId, quantity }],
             });
