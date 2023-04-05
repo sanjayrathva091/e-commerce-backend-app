@@ -1,3 +1,5 @@
+const UserModel = require("../models/user.model");
+
 /**
  * Login user
  * @param {object} req - Express request object
