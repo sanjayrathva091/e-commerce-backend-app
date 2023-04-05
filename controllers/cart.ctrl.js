@@ -8,6 +8,7 @@
 */
 
 const CartModel = require("../models/cart.model");
+const ProductModel = require("../models/products.model");
 
 const getCart = async (req, res) => {
     try {
