@@ -39,7 +39,7 @@ exports.loginUser = async (req, res) => {
         if (error.code === 's') {
             // Handle specific error
         } else {
-            return res.status(400).json({ message: "Something went wrong", error: error });
+            return res.status(400).json({ message: error.message });
         }
     }
 };
