@@ -99,7 +99,7 @@ userRoutes.post('/user/add/cart', [verifyToken], addToCart);
 
 userRoutes.patch('/user/update/cart', [verifyToken], updateCart);
 
-userRoutes.patch('/user/remove/cart', [verifyToken], removeFromCart);
+userRoutes.delete('/user/remove/cart', [verifyToken], removeFromCart);
 
 /**
  * Checkout route
