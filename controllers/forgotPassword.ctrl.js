@@ -1,3 +1,17 @@
+
+/**
+ * Sends a password reset email to the user.
+*
+* @async
+ * @function forgotPassword
+ * @param {Object} req - The request object.
+ * @param {Object} req.body - The request body object.
+ * @param {string} req.body.email - The email of the user.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The response object containing the message.
+ * @throws {Object} - The error object if there is an error during the process.
+*/
+
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const UserModel = require("../models/user.model");
@@ -10,8 +24,7 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-
-exports.forgotPassword = async (req, res) => {
+const forgotPassword = async (req, res) => {
     const { email } = req.body;
 
     try {
@@ -40,3 +53,5 @@ exports.forgotPassword = async (req, res) => {
         return res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+module.exports = { forgotPassword };

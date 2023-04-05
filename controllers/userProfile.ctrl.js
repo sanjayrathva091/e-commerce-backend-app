@@ -4,6 +4,13 @@ const UserModel = require("../models/user.model");
 
 const PrivateKey = process.env.PRIVATE_KEY;
 
+/**
+ * Get current user profile.
+ *
+ * @param {object} req - The request object.
+ * @param {object} res - The response object.
+ * @returns {Promise<void>}
+ */
 exports.userProfile = async (req, res) => {
     try {
         const bearerToken = req.headers.authorization;

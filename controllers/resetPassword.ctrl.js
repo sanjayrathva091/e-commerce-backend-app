@@ -1,3 +1,12 @@
+/**
+ * Reset user password using reset token.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @param {string} req.body.token - Reset token sent to user email.
+ * @param {string} req.body.password - New password for user.
+ * @returns {Object} - Returns response object with status and message.
+ * @throws {Object} - Throws error object with message.
+ */
 const bcrypt = require('bcrypt');
 const UserModel = require("../models/user.model");
 
@@ -18,7 +27,7 @@ exports.resetPassword = async (req, res) => {
         await user.save();
         return res.status(200).json({ message: 'Password reset successfully' });
     } catch (error) {
-        console.error(err);
+        console.error(error);
         return res.status(500).json({ error: 'Internal server error' });
     }
 };
