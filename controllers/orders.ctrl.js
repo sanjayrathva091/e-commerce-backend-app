@@ -50,9 +50,8 @@ const getOrders = async (req, res) => {
       totalPages: Math.ceil(count / limit),
       orders,
     });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
 
@@ -83,9 +82,8 @@ const updateOrder = async (req, res) => {
     const updatedOrder = await order.save();
 
     res.json(updatedOrder);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
 
