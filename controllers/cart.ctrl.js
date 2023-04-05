@@ -7,6 +7,8 @@
  * @returns {Object} Returns JSON object containing the cart data and a success flag
 */
 
+const CartModel = require("../models/cart.model");
+
 const getCart = async (req, res) => {
     try {
         const { page = 1, limit = 10 } = req.query;
