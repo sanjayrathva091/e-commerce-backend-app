@@ -1,3 +1,7 @@
+// import module
+const bcrypt = require('bcrypt');
+const UserModel = require('../models/user.model');
+
 /**
  * Registers a new user with hashed password.
  * @function

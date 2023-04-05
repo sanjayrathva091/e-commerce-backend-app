@@ -1,25 +1,28 @@
 /**
-
-@module ProductModel
-@description Defines the product schema for MongoDB and exports the ProductModel model
+ * @module ProductModel
+ * @description Defines the product schema for MongoDB and exports the ProductModel model
 */
+
 const mongoose = require('mongoose');
 
 /**
-
-@typedef ProductSchema
-@property {string} name - Product name (required)
-@property {string} description - Product description (required)
-@property {string} category - Product category (required, enum: ['Blender', 'Toaster', 'Coffee Maker', 'Food Processor', 'Juicer', 'Mixer'], default: 'Blender')
-@property {number} price - Product price (required, min: 0)
-@property {string} image - Product image (required)
-@property {Array<Object>} ratings - Array of rating objects with user, rating and review properties
-@property {number} numReviews - Number of reviews for the product
-@property {string} brand - Product brand (required)
-@property {number} countInStock - Number of products in stock (required, min: 0, max: 100)
-@property {Date} createdAt - Timestamp when the product was created
-@property {Date} updatedAt - Timestamp when the product was last updated
+ * @typedef ProductSchema
+ * @property {string} name - Product name (required)
+ * @property {string} description - Product description (required)
+ * @property {string} model - Product model (required)
+ * @property {string} color - Product color (required)
+ * @property {string} weight - Product weight (required)
+ * @property {string} category - Product category (required, enum: ['Blender', 'Toaster', 'Coffee Maker', 'Food Processor', 'Juicer', 'Mixer'], default: 'Blender')
+ * @property {number} price - Product price (required, min: 0)
+ * @property {string} image - Product image (required)
+ * @property {Array<Object>} ratings - Array of rating objects with user, rating and review properties
+ * @property {number} numReviews - Number of reviews for the product
+ * @property {string} brand - Product brand (required)
+ * @property {number} countInStock - Number of products in stock (required, min: 0, max: 100)
+ * @property {Date} createdAt - Timestamp when the product was created
+ * @property {Date} updatedAt - Timestamp when the product was last updated
 */
+
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -32,6 +35,16 @@ const productSchema = new mongoose.Schema({
         required: true,
         trim: true,
         maxLength: 1000
+    },
+    color: {
+        type: String,
+        required: true,
+        enum: ['Red', 'Green', 'Blue', 'Purple', 'White'],
+        default: 'White'
+    },
+    weight: {
+        type: Number,
+        required: true,
     },
     category: {
         type: String,
@@ -89,11 +102,12 @@ const productSchema = new mongoose.Schema({
 });
 
 /**
-
-Product model
-@typedef ProductModel
-@type {object}
-@property {ProductSchema} schema - Product schema
+ * Product model
+ * @typedef ProductModel
+ * @type {object}
+ * @property {ProductSchema} schema - Product schema
 */
+
 const ProductModel = mongoose.model('Product', productSchema);
+
 module.exports = ProductModel;
