@@ -83,7 +83,7 @@ userRoutes.get('/user/profile', userProfile);
 userRoutes.put('/user/profile', updateProfile);
 
 /**
- * Admin products route
+ * User products route
  * @name get/user/products
  * @function
  * @memberof module:routes/userRoutes
@@ -93,12 +93,36 @@ userRoutes.put('/user/profile', updateProfile);
  */
 userRoutes.get('/user/products', getProducts);
 
+/**
+ * Retrieves the user's cart.
+ * @route GET /user/get/cart
+ * @access Private
+ * @middleware verifyToken - Authenticates user token
+*/
 userRoutes.get('/user/get/cart', [verifyToken], getCart);
 
+/**
+ * Adds a product to the user's cart.
+ * @route POST /user/add/cart
+ * @access Private
+ * @middleware verifyToken - Authenticates user token
+*/
 userRoutes.post('/user/add/cart', [verifyToken], addToCart);
 
+/**
+ * Updates a product in the user's cart.
+ * @route PATCH /user/update/cart/:productId
+ * @access Private
+ * @middleware verifyToken - Authenticates user token
+*/
 userRoutes.patch('/user/update/cart/:productId', [verifyToken], updateCart);
 
+/**
+ * Removes a product from the user's cart.
+ * @route DELETE /user/remove/cart/:productId
+ * @access Private
+ * @middleware verifyToken - Authenticates user token
+*/
 userRoutes.delete('/user/remove/cart/:productId', [verifyToken], removeFromCart);
 
 /**
