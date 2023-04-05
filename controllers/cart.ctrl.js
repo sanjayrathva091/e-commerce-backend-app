@@ -129,7 +129,7 @@ const removeFromCart = async (req, res) => {
             return res.status(404).json({ message: 'Cart not found.' });
         }
 
-        cart.items = cart.items.filter(
+        cart.products = cart.products.filter(
             (item) => item.product.toString() !== productId
         );
 
