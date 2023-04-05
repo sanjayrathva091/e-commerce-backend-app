@@ -13,6 +13,7 @@ const { userProfile } = require('../controllers/userProfile.ctrl');
 const { getProducts } = require('../controllers/admin.ctrl');
 const checkout = require('../controllers/checkout.ctrl');
 const { getCart, addToCart, updateCart, removeFromCart } = require('../controllers/cart.ctrl');
+const verifyToken = require('../middlewares/verifyToken');
 const userRoutes = express.Router();
 
 /**
@@ -92,13 +93,13 @@ userRoutes.put('/user/profile', updateProfile);
  */
 userRoutes.get('/user/products', getProducts);
 
-userRoutes.get('/user/get/cart', getCart);
+userRoutes.get('/user/get/cart', [verifyToken], getCart);
 
-userRoutes.post('/user/add/cart', addToCart);
+userRoutes.post('/user/add/cart', [verifyToken], addToCart);
 
-userRoutes.patch('/user/update/cart', updateCart);
+userRoutes.patch('/user/update/cart', [verifyToken], updateCart);
 
-userRoutes.patch('/user/remove/cart', removeFromCart);
+userRoutes.patch('/user/remove/cart', [verifyToken], removeFromCart);
 
 /**
  * Checkout route
